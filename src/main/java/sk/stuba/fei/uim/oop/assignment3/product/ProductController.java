@@ -35,4 +35,31 @@ public class ProductController {
         this.repository.save(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public Product updateProductById(@PathVariable("id") Long id, @RequestBody Product body) throws NotFoundException {
+        Product product = this.repository.findProductById(id);
+        if (product != null) {
+            if (body.getName() != null) {
+                product.setName(body.getName());
+            }
+            if (body.getDescription() != null) {
+                product.setDescription(body.getDescription());
+            }
+            this.repository.save(product);
+            return product;
+        }
+        throw new NotFoundException();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable("id") Long id) throws NotFoundException {
+        Product product = this.repository.findProductById(id);
+        if (product != null) {
+            this.repository.delete(product);
+            return;
+        }
+        throw new NotFoundException();
+    }
+
 }
