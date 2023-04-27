@@ -62,4 +62,24 @@ public class ProductController {
         throw new NotFoundException();
     }
 
+    @GetMapping("/{id}/amount")
+    public ProductAmount getProductAmount(@PathVariable("id") Long id) throws NotFoundException {
+        Product product = getProductById(id);
+        if (product != null) {
+            return new ProductAmount(product.getAmount());
+        }
+        throw new NotFoundException();
+    }
+
+    @PostMapping("/{id}/amount")
+    public ProductAmount increaseProductAmount(@PathVariable("id") Long id, @RequestBody Product body) throws NotFoundException {
+        Product product = getProductById(id);
+        if (product != null) {
+            product.setAmount(product.getAmount()+body.getAmount());
+            this.repository.save(product);
+            return new ProductAmount(product.getAmount());
+        }
+        throw new NotFoundException();
+    }
+
 }
