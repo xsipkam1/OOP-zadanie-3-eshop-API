@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
 import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
-import sk.stuba.fei.uim.oop.assignment3.cart.web.CartRequest;
+import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
-import sk.stuba.fei.uim.oop.assignment3.payment.IPaymentRepository;
-import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.data.IPaymentRepository;
+import sk.stuba.fei.uim.oop.assignment3.payment.data.Payment;
 import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 import sk.stuba.fei.uim.oop.assignment3.product.service.IProductService;
 
@@ -46,7 +46,6 @@ public class CartService implements ICartService {
         this.repository.delete(cart);
     }
 
-
     @Override
     public Cart addToCart(Long id, CartRequest body) throws NotFoundException, IllegalOperationException {
         Cart cart = getCart(id);
@@ -58,7 +57,7 @@ public class CartService implements ICartService {
             throw new IllegalOperationException();
         }
 
-        Payment payment = new Payment(cart, product, body.getAmount(), body.getAmount()*product.getPrice());
+        Payment payment = new Payment(cart, product, body.getAmount(), body.getAmount() * product.getPrice());
         payment = this.paymentRepository.save(payment);
         product.getPayments().add(payment);
 

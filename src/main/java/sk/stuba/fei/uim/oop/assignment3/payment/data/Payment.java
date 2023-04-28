@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.payment;
+package sk.stuba.fei.uim.oop.assignment3.payment.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class Payment {
         this.cart = cart;
         this.product = product;
         this.amount = amount;
-        this.price=price;
+        this.price = price;
     }
 
 }

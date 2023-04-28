@@ -1,7 +1,7 @@
 package sk.stuba.fei.uim.oop.assignment3.cart.data;
 
 import lombok.Data;
-import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.data.Payment;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Cart {
     private boolean payed;
 
     public Cart() {
-        this.shoppingList=new ArrayList<>();
-        this.payed=false;
+        this.shoppingList = new ArrayList<>();
+        this.payed = false;
     }
 }

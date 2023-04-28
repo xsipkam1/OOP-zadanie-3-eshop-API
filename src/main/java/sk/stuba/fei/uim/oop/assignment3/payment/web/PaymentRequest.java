@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.payment;
+package sk.stuba.fei.uim.oop.assignment3.payment.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

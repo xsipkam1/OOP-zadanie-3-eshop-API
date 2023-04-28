@@ -1,8 +1,8 @@
-package sk.stuba.fei.uim.oop.assignment3.cart.web;
+package sk.stuba.fei.uim.oop.assignment3.cart.web.bodies;
 
 import lombok.Getter;
 import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
-import sk.stuba.fei.uim.oop.assignment3.payment.PaymentRequest;
+import sk.stuba.fei.uim.oop.assignment3.payment.web.PaymentRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
