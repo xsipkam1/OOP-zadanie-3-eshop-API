@@ -2,11 +2,11 @@ package sk.stuba.fei.uim.oop.assignment3.product.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +22,9 @@ public class Product {
     private int amount;
     private String unit;
     private int price;
+
+    @OneToMany
+    private List<Payment> payments = new ArrayList<>();
 
     public Product(String name, String description, int amount, String unit, int price) {
         this.name=name;
