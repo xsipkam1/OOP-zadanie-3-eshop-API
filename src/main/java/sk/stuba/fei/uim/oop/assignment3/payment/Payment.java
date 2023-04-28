@@ -22,11 +22,13 @@ public class Payment {
     private Product product;
 
     private int amount;
+    private double price;
 
-    public Payment(Cart cart, Product product, int amount) {
+    public Payment(Cart cart, Product product, int amount, double price) {
         this.cart = cart;
         this.product = product;
         this.amount = amount;
+        this.price=price;
     }
 
 }

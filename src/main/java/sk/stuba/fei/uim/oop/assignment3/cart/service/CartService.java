@@ -58,18 +58,42 @@ public class CartService implements ICartService {
             throw new IllegalOperationException();
         }
 
-        Payment payment = new Payment(cart, product, body.getAmount());
+        Payment payment = new Payment(cart, product, body.getAmount(), body.getAmount()*product.getPrice());
         payment = this.paymentRepository.save(payment);
-        cart.getShoppingList().add(payment);
         product.getPayments().add(payment);
 
-        if (!cart.getShoppingList().contains(payment)) {
+        boolean hasProduct = false;
+        for (Payment p : cart.getShoppingList()) {
+            if (p.getProduct().getId() == payment.getProduct().getId()) {
+                p.setAmount(p.getAmount() + body.getAmount());
+                p.setPrice(product.getPrice() * p.getAmount());
+                hasProduct = true;
+                break;
+            }
+        }
+
+        if (!hasProduct) {
             cart.getShoppingList().add(payment);
         }
 
         this.productService.increaseProductAmount(body.getProductId(), -body.getAmount());
         this.repository.save(cart);
         return cart;
+    }
+
+    @Override
+    public double payForCart(Long id) throws NotFoundException, IllegalOperationException {
+        Cart cart = getCart(id);
+        if (cart.isPayed()) {
+            throw new IllegalOperationException();
+        }
+        double sum = 0;
+        for (Payment p : cart.getShoppingList()) {
+            sum += p.getPrice();
+        }
+        cart.setPayed(true);
+        this.repository.save(cart);
+        return sum;
     }
 
 }

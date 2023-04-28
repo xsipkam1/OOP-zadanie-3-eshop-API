@@ -21,12 +21,12 @@ public class Product {
     private String description;
     private int amount;
     private String unit;
-    private int price;
+    private double price;
 
     @OneToMany
     private List<Payment> payments = new ArrayList<>();
 
-    public Product(String name, String description, int amount, String unit, int price) {
+    public Product(String name, String description, int amount, String unit, double price) {
         this.name=name;
         this.description=description;
         this.amount=amount;

@@ -33,7 +33,12 @@ public class CartController {
 
     @PostMapping("/{id}/add")
     public ResponseEntity<CartResponse> addToCart(@PathVariable("id") Long id, @RequestBody CartRequest body) throws NotFoundException, IllegalOperationException {
-        return new ResponseEntity<>(new CartResponse(this.service.addToCart(id, body)), HttpStatus.CREATED);
+        return new ResponseEntity<>(new CartResponse(this.service.addToCart(id, body)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/pay")
+    public ResponseEntity<Double> payForCart(@PathVariable("id") Long id) throws NotFoundException, IllegalOperationException {
+        return new ResponseEntity<>(this.service.payForCart(id), HttpStatus.OK);
     }
 
 }
