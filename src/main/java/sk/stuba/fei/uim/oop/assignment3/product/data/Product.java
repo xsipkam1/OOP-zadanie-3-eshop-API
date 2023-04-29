@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop.assignment3.product.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sk.stuba.fei.uim.oop.assignment3.payment.data.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.payment.data;
+package sk.stuba.fei.uim.oop.assignment3.payment;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

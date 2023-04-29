@@ -7,8 +7,8 @@ import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
-import sk.stuba.fei.uim.oop.assignment3.payment.data.IPaymentRepository;
-import sk.stuba.fei.uim.oop.assignment3.payment.data.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.IPaymentRepository;
+import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
 import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 import sk.stuba.fei.uim.oop.assignment3.product.service.IProductService;
 
