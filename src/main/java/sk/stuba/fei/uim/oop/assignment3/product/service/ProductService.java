@@ -23,10 +23,10 @@ public class ProductService implements IProductService {
     @Override
     public Product getProduct(Long id) throws NotFoundException {
         Product product = this.repository.findProductById(id);
-        if (product != null) {
-            return product;
+        if (product == null) {
+            throw new NotFoundException();
         }
-        throw new NotFoundException();
+        return product;
     }
 
     @Override

@@ -24,13 +24,14 @@ public class Product {
     private double price;
 
     @OneToMany
-    private List<Payment> payments = new ArrayList<>();
+    private List<Payment> payments;
 
     public Product(String name, String description, int amount, String unit, double price) {
-        this.name=name;
-        this.description=description;
-        this.amount=amount;
-        this.unit=unit;
-        this.price=price;
+        this.payments = new ArrayList<>();
+        this.name = name;
+        this.description = description;
+        this.amount = amount;
+        this.unit = unit;
+        this.price = price;
     }
 }

@@ -34,10 +34,10 @@ public class CartService implements ICartService {
     @Override
     public Cart getCart(Long id) throws NotFoundException {
         Cart cart = this.repository.findCartById(id);
-        if (cart != null) {
-            return cart;
+        if (cart == null) {
+            throw new NotFoundException();
         }
-        throw new NotFoundException();
+        return cart;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CartService implements ICartService {
 
         boolean hasProduct = false;
         for (Payment p : cart.getShoppingList()) {
-            if (p.getProduct().getId() == payment.getProduct().getId()) {
+            if (p.getProduct().getId().equals(payment.getProduct().getId())) {
                 p.setAmount(p.getAmount() + body.getAmount());
                 p.setPrice(product.getPrice() * p.getAmount());
                 hasProduct = true;
