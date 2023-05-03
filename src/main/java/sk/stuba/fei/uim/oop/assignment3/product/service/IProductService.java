@@ -14,5 +14,5 @@ public interface IProductService {
     Product updateProduct(Long id, ProductUpdate body) throws NotFoundException;
     void deleteProduct(Long id) throws NotFoundException;
     int getProductAmount(Long id) throws NotFoundException;
-    int increaseProductAmount(Long id, int increment) throws NotFoundException;
+    int changeProductAmount(Long id, int increment) throws NotFoundException;
 }

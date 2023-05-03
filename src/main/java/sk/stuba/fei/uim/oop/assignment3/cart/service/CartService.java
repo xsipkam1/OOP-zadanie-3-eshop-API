@@ -7,8 +7,8 @@ import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
-import sk.stuba.fei.uim.oop.assignment3.payment.IPaymentRepository;
-import sk.stuba.fei.uim.oop.assignment3.payment.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.data.Payment;
+import sk.stuba.fei.uim.oop.assignment3.payment.service.IPaymentService;
 import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 import sk.stuba.fei.uim.oop.assignment3.product.service.IProductService;
 
@@ -19,7 +19,7 @@ public class CartService implements ICartService {
     private ICartRepository repository;
 
     @Autowired
-    private IPaymentRepository paymentRepository;
+    private IPaymentService paymentService;
 
     @Autowired
     private IProductService productService;
@@ -58,7 +58,7 @@ public class CartService implements ICartService {
         }
 
         Payment payment = new Payment(cart, product, body.getAmount(), body.getAmount() * product.getPrice());
-        payment = this.paymentRepository.save(payment);
+        payment = this.paymentService.savePayment(payment);
         product.getPayments().add(payment);
 
         boolean hasProduct = false;
@@ -75,7 +75,7 @@ public class CartService implements ICartService {
             cart.getShoppingList().add(payment);
         }
 
-        this.productService.increaseProductAmount(body.getProductId(), -body.getAmount());
+        this.productService.changeProductAmount(body.getProductId(), -body.getAmount());
         this.repository.save(cart);
         return cart;
     }

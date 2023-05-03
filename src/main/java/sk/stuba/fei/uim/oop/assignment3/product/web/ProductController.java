@@ -53,7 +53,7 @@ public class ProductController {
 
     @PostMapping("/{id}/amount")
     public ProductAmount increaseProductAmount(@PathVariable("id") Long id, @RequestBody ProductAmount body) throws NotFoundException {
-        return new ProductAmount(this.service.increaseProductAmount(id, body.getAmount()));
+        return new ProductAmount(this.service.changeProductAmount(id, body.getAmount()));
     }
 
 }
